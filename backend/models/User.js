@@ -13,24 +13,24 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
 
-    googleId: {
+    googleId: {                      // Optional field for Google ID
       type: String,
       unique: true,
       sparse: true,
     },
 
-    profilePicture: {
+    profilePicture: {                // Optional field for profile picture URL
       type: String,
     },
 
-    provider: {
+    provider: {                      // Field to indicate the authentication provider
       type: String,
       enum: ["local", "google"],
       default: "google",
     },
   },
   {
-    timestamps: true,
+    timestamps: true,                // Automatically adds createdAt and updatedAt fields
   }
 );
 

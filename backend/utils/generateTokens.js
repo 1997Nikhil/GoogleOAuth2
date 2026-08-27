@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const generateAccessToken = (user) => {
+const generateAccessToken = (user) => {      // Generate a JWT access token for the user
   return jwt.sign(
     {
       userId: user._id,
@@ -13,7 +13,7 @@ const generateAccessToken = (user) => {
   );
 };
 
-const generateRefreshToken = (user) => {
+const generateRefreshToken = (user) => {         // Generate a JWT refresh token for the user
   return jwt.sign(
     {
       userId: user._id,

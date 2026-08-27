@@ -4,14 +4,14 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/User");
 
 passport.use(
-  new GoogleStrategy(
+  new GoogleStrategy(                                       // Configure the Google OAuth 2.0 strategy
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
     },
 
-    async (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {       // Callback function to handle the user profile returned by Google
       try {
         console.log("Google profile:");
         console.log(profile);
