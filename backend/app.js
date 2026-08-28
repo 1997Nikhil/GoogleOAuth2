@@ -11,6 +11,8 @@ require("./config/passport");
 
 const authRoutes = require("./routes/authRoutes");
 
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 
 connectDB();
@@ -29,6 +31,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 app.use("/api/auth", authRoutes);
+
+app.use("/api/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.json({
