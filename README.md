@@ -1,48 +1,67 @@
-🔐 Google OAuth + JWT Authentication
+# 🔐 Google OAuth + JWT Authentication
 
-A full-stack authentication system built with React.js, Node.js, Express.js, MongoDB, Google OAuth 2.0, and JWT.
+A full-stack authentication system built with **React.js**, **Node.js**, **Express.js**, **MongoDB**, **Google OAuth 2.0**, and **JWT**.
 
 This project demonstrates how to implement Google Sign-In with your own JWT-based authentication system using short-lived access tokens and refresh tokens.
 
-🚀 Features
-🔑 Google OAuth 2.0 Login
-👤 Automatic user creation in MongoDB
-🔐 JWT Access Token authentication
-♻️ JWT Refresh Token authentication
-🛡️ Protected backend routes
-🍪 HttpOnly cookies for refresh tokens
-⚛️ React frontend
-🟢 Express.js REST API
-🍃 MongoDB Atlas database
-🔄 Automatic access-token refresh
-🚪 Secure logout
-🌐 CORS configuration
-🔒 Environment variable based configuration
-🛠️ Tech Stack
-Frontend
-React.js
-React Router
-Axios
-JavaScript
-Vite
-Backend
-Node.js
-Express.js
-Passport.js
-Passport Google OAuth 2.0
-JSON Web Token (JWT)
-Cookie Parser
-CORS
-Database
-MongoDB
-MongoDB Atlas
-Mongoose
-Authentication
-Google OAuth 2.0
-JWT Access Token
-JWT Refresh Token
-HttpOnly Cookies
-📁 Project Structure
+---
+
+## 🚀 Features
+
+* 🔑 Google OAuth 2.0 Login
+* 👤 Automatic user creation in MongoDB
+* 🔐 JWT Access Token authentication
+* ♻️ JWT Refresh Token authentication
+* 🛡️ Protected backend routes
+* 🍪 HttpOnly cookies for refresh tokens
+* ⚛️ React frontend
+* 🟢 Express.js REST API
+* 🍃 MongoDB Atlas database
+* 🔄 Automatic access-token refresh
+* 🚪 Secure logout
+* 🌐 CORS configuration
+* 🔒 Environment variable based configuration
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React.js
+* React Router
+* Axios
+* JavaScript
+* Vite
+
+### Backend
+
+* Node.js
+* Express.js
+* Passport.js
+* Passport Google OAuth 2.0
+* JSON Web Token (JWT)
+* Cookie Parser
+* CORS
+
+### Database
+
+* MongoDB
+* MongoDB Atlas
+* Mongoose
+
+### Authentication
+
+* Google OAuth 2.0
+* JWT Access Token
+* JWT Refresh Token
+* HttpOnly Cookies
+
+---
+
+# 📁 Project Structure
+
+```text
 google-oauth-jwt/
 │
 ├── backend/
@@ -91,11 +110,15 @@ google-oauth-jwt/
 │   └── vite.config.js
 │
 └── README.md
+```
 
-🔄 Authentication Flow
+---
+
+# 🔄 Authentication Flow
 
 The application uses Google OAuth to verify the user's identity and then creates its own JWT tokens.
 
+```text
                      ┌─────────────────┐
                      │      React      │
                      │    Frontend     │
@@ -136,59 +159,98 @@ The application uses Google OAuth to verify the user's identity and then creates
                      │      React      │
                      │   Dashboard     │
                      └─────────────────┘
-🔑 How Authentication Works
-1. User clicks Google Login
+```
+
+---
+
+# 🔑 How Authentication Works
+
+## 1. User clicks Google Login
 
 React redirects the user to:
 
+```text
 GET /api/auth/google
-2. Backend redirects to Google
+```
+
+---
+
+## 2. Backend redirects to Google
 
 Passport.js starts the Google OAuth flow.
 
 Google asks the user to select and authorize an account.
 
-3. Google redirects back to the backend
+---
+
+## 3. Google redirects back to the backend
 
 Google redirects the user to:
 
+```text
 GET /api/auth/google/callback
-4. Backend receives Google profile
+```
+
+---
+
+## 4. Backend receives Google profile
 
 The backend receives information such as:
 
+```json
 {
   "id": "google-user-id",
   "displayName": "User Name",
   "email": "user@gmail.com",
   "photo": "profile-image-url"
 }
-5. Find or create user
+```
+
+---
+
+## 5. Find or create user
 
 The backend checks MongoDB using the Google ID or email.
 
 If the user doesn't exist:
 
+```text
 Create User
+```
 
 If the user already exists:
 
+```text
 Login Existing User
-6. Generate JWT tokens
+```
+
+---
+
+## 6. Generate JWT tokens
 
 The backend generates:
 
-Access Token
+### Access Token
+
+```text
 Expiration: 15 minutes
+```
 
 Used to access protected APIs.
 
-Refresh Token
+### Refresh Token
+
+```text
 Expiration: 7 days
+```
 
-Stored in an HttpOnly cookie and used to generate a new access token.
+Stored in an **HttpOnly cookie** and used to generate a new access token.
 
-🔐 Token Architecture
+---
+
+# 🔐 Token Architecture
+
+```text
              Login
                │
                ▼
@@ -214,26 +276,47 @@ Stored in an HttpOnly cookie and used to generate a new access token.
                ▼
        Generate New
        Access Token
-⚙️ Installation
-1. Clone the repository
+```
+
+---
+
+# ⚙️ Installation
+
+## 1. Clone the repository
+
+```bash
 git clone https://github.com/YOUR_USERNAME/google-oauth-jwt.git
+```
 
 Go into the project:
 
+```bash
 cd google-oauth-jwt
-🖥️ Backend Setup
+```
+
+---
+
+# 🖥️ Backend Setup
 
 Go to the backend directory:
 
+```bash
 cd backend
+```
 
 Install dependencies:
 
+```bash
 npm install
-🔐 Environment Variables
+```
 
-Create a .env file inside the backend directory.
+---
 
+# 🔐 Environment Variables
+
+Create a `.env` file inside the `backend` directory.
+
+```env
 PORT=5000
 
 MONGO_URI=your_mongodb_atlas_connection_string
@@ -247,7 +330,11 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
 
 CLIENT_URL=http://localhost:5173
-Example
+```
+
+### Example
+
+```env
 PORT=5000
 
 MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/googleoauth
@@ -261,30 +348,43 @@ GOOGLE_CLIENT_SECRET=GOCSPX-example
 GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
 
 CLIENT_URL=http://localhost:5173
+```
 
-Never commit your .env file to GitHub.
+> Never commit your `.env` file to GitHub.
 
-☁️ MongoDB Atlas Setup
+---
+
+# ☁️ MongoDB Atlas Setup
 
 Create a MongoDB Atlas cluster and obtain your connection string.
 
 Your connection string should look similar to:
 
+```text
 mongodb+srv://username:password@cluster.mongodb.net/database
+```
 
 Put the connection string inside:
 
+```env
 MONGO_URI=your_connection_string
-🔵 Google OAuth Setup
+```
+
+---
+
+# 🔵 Google OAuth Setup
 
 Go to Google Cloud Console:
 
+```text
 https://console.cloud.google.com/
+```
 
 Create a Google Cloud project.
 
 Then go to:
 
+```text
 APIs & Services
         ↓
 Credentials
@@ -292,74 +392,117 @@ Credentials
 Create Credentials
         ↓
 OAuth Client ID
+```
 
 Select:
 
+```text
 Application Type:
 Web Application
-Authorized JavaScript Origins
+```
+
+---
+
+## Authorized JavaScript Origins
 
 For local development:
 
+```text
 http://localhost:5173
-Authorized Redirect URIs
+```
+
+---
+
+## Authorized Redirect URIs
 
 Add:
 
+```text
 http://localhost:5000/api/auth/google/callback
+```
 
 Your configuration should therefore be:
 
+```text
 Authorized JavaScript origins
 
 http://localhost:5173
+```
 
 and:
 
+```text
 Authorized redirect URIs
 
 http://localhost:5000/api/auth/google/callback
-▶️ Start Backend
+```
 
-Inside backend:
+---
 
+# ▶️ Start Backend
+
+Inside `backend`:
+
+```bash
 node app.js
+```
 
 Expected output:
 
+```text
 MongoDB connected
 Server running on port 5000
-⚛️ Frontend Setup
+```
+
+---
+
+# ⚛️ Frontend Setup
 
 Open another terminal.
 
 Go to:
 
+```bash
 cd frontend
+```
 
 Install dependencies:
 
+```bash
 npm install
+```
 
 Start the development server:
 
+```bash
 npm run dev
+```
 
 React should start at:
 
+```text
 http://localhost:5173
-🧪 Testing Google Login
+```
+
+---
+
+# 🧪 Testing Google Login
 
 Open:
 
+```text
 http://localhost:5173/login
+```
 
 Click:
 
+```text
 Continue with Google
+```
 
 The authentication flow will be:
 
+```text
 Login Page
      ↓
 Google OAuth
@@ -375,17 +518,24 @@ JWT Access Token
 JWT Refresh Token
      ↓
 Dashboard
-🔒 Protected API
+```
+
+---
+
+# 🔒 Protected API
 
 Protected routes require an access token.
 
 Example:
 
+```http
 GET /api/user/profile
 Authorization: Bearer ACCESS_TOKEN
+```
 
 The backend verifies:
 
+```text
 Authorization Header
         ↓
 Extract Token
@@ -397,10 +547,15 @@ Valid?
  Yes          No
   ↓            ↓
 Continue      401
-🚪 Logout Flow
+```
+
+---
+
+# 🚪 Logout Flow
 
 Logout should:
 
+```text
 React
   ↓
 POST /api/auth/logout
@@ -412,133 +567,181 @@ Clear refresh-token cookie
 Remove access token
   ↓
 Redirect to Login
-🛡️ Security Considerations
+```
+
+---
+
+# 🛡️ Security Considerations
 
 This project follows several important authentication practices:
 
-Google Client Secret is stored only on the backend.
-Access tokens are short-lived.
-Refresh tokens are stored in HttpOnly cookies.
-Protected APIs validate JWTs.
-Secrets are stored in environment variables.
-CORS is restricted to the frontend origin.
-Refresh tokens should not be exposed to client-side JavaScript.
+* Google Client Secret is stored only on the backend.
+* Access tokens are short-lived.
+* Refresh tokens are stored in HttpOnly cookies.
+* Protected APIs validate JWTs.
+* Secrets are stored in environment variables.
+* CORS is restricted to the frontend origin.
+* Refresh tokens should not be exposed to client-side JavaScript.
 
 For production, also enable:
 
+```text
 secure: true
+```
 
 for cookies when using HTTPS.
 
-📌 API Endpoints
-Authentication
-Method	Endpoint	Description
-GET	/api/auth/google	Start Google OAuth
-GET	/api/auth/google/callback	Google OAuth callback
-POST	/api/auth/refresh	Generate new access token
-POST	/api/auth/logout	Logout user
-User
-Method	Endpoint	Authentication
-GET	/api/user/profile	JWT Required
-🧰 Useful Commands
-Backend
+---
+
+# 📌 API Endpoints
+
+## Authentication
+
+| Method | Endpoint                    | Description               |
+| ------ | --------------------------- | ------------------------- |
+| GET    | `/api/auth/google`          | Start Google OAuth        |
+| GET    | `/api/auth/google/callback` | Google OAuth callback     |
+| POST   | `/api/auth/refresh`         | Generate new access token |
+| POST   | `/api/auth/logout`          | Logout user               |
+
+## User
+
+| Method | Endpoint            | Authentication |
+| ------ | ------------------- | -------------- |
+| GET    | `/api/user/profile` | JWT Required   |
+
+---
+
+# 🧰 Useful Commands
+
+### Backend
+
+```bash
 npm install
+```
+
+```bash
 node app.js
-Frontend
+```
+
+### Frontend
+
+```bash
 npm install
+```
+
+```bash
 npm run dev
-🐛 Common Errors
-redirect_uri_mismatch
+```
+
+---
+
+# 🐛 Common Errors
+
+## `redirect_uri_mismatch`
 
 Check that Google Cloud Console contains exactly:
 
+```text
 http://localhost:5000/api/auth/google/callback
+```
 
 The URL must match your backend callback URL.
 
-ERR_CONNECTION_REFUSED
+---
+
+## `ERR_CONNECTION_REFUSED`
 
 Make sure the backend is running:
 
+```bash
 node app.js
+```
 
 and that it is listening on:
 
+```text
 http://localhost:5000
-MongoDB connection error
+```
+
+---
+
+## MongoDB connection error
 
 Check:
 
+```env
 MONGO_URI=...
+```
 
 Also make sure your IP address is allowed in MongoDB Atlas Network Access.
 
-Google Client ID error
+---
+
+## Google Client ID error
 
 Check:
 
+```env
 GOOGLE_CLIENT_ID=...
 GOOGLE_CLIENT_SECRET=...
+```
 
 Make sure there are no unnecessary spaces or quotation marks.
 
-📚 What I Learned From This Project
+---
+
+# 📚 What I Learned From This Project
 
 This project demonstrates:
 
-OAuth 2.0
-Google Authentication
-Passport.js
-JWT Authentication
-Access Tokens
-Refresh Tokens
-HttpOnly Cookies
-Protected Routes
-React Authentication
-Express Middleware
-MongoDB User Management
-CORS
-REST APIs
-Environment Variables
-Authentication Security
-🚀 Future Improvements
+* OAuth 2.0
+* Google Authentication
+* Passport.js
+* JWT Authentication
+* Access Tokens
+* Refresh Tokens
+* HttpOnly Cookies
+* Protected Routes
+* React Authentication
+* Express Middleware
+* MongoDB User Management
+* CORS
+* REST APIs
+* Environment Variables
+* Authentication Security
+
+---
+
+# 🚀 Future Improvements
 
 Possible improvements include:
 
-Axios interceptors
+* [ ] Axios interceptors
+* [ ] Automatic access-token refresh
+* [ ] Better authentication context using React Context API
+* [ ] Protected React routes
+* [ ] Secure refresh-token rotation
+* [ ] Logout from all devices
+* [ ] Email/password authentication
+* [ ] Forgot password
+* [ ] Email verification
+* [ ] Role-based authorization
+* [ ] Production deployment
+* [ ] HTTPS configuration
+* [ ] Rate limiting
+* [ ] Helmet security middleware
 
-Automatic access-token refresh
+---
 
-Better authentication context using React Context API
+# 👨‍💻 Author
 
-Protected React routes
-
-Secure refresh-token rotation
-
-Logout from all devices
-
-Email/password authentication
-
-Forgot password
-
-Email verification
-
-Role-based authorization
-
-Production deployment
-
-HTTPS configuration
-
-Rate limiting
-
-Helmet security middleware
-
-👨‍💻 Author
-
-Nikhil Dadhich
+**Nikhil Dadhich**
 
 Full Stack Developer | MERN Stack | JavaScript
 
-⭐ Support
+---
+
+## ⭐ Support
 
 If you found this project useful, consider giving the repository a ⭐ on GitHub.
