@@ -6,6 +6,8 @@ This project demonstrates how to implement Google Sign-In with your own JWT-base
 
 ---
 
+![Flow Chart](<Image/Flow Chart.png>)
+
 ## 🚀 Features
 
 * 🔑 Google OAuth 2.0 Login
